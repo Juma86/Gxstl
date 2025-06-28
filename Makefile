@@ -1,45 +1,56 @@
 .PHONY: default log run build prepare clean
 
-INCLUDES := gtk4
+INCLUDES := .
 
 CC       := gcc
-CFLAGS   := -fsanitize=address -g `pkg-config --cflags $(INCLUDES)` -Wall -Wextra -pedantic -Werror
-LDFLAGS  := -fsanitize=address -g `pkg-config --libs $(INCLUDES)` -nostdlib
+CFLAGS   := `pkg-config --cflags $(INCLUDES)`
+
+ASM      := as
+ASMFLAGS := 
+
+AR       := ar
+ARFLAGS  := rcs
 
 SRC_DIR  := Source/
 OUT_DIR  := Bin/
 TMP_DIR  := Temp/
 OBJ_DIR  := $(TMP_DIR)Object/
 
-TARGET   := gxshl
+TARGET   := libgxstd.a
 
-SRCS     := $(shell ls $(SRC_DIR)*.c)
-OBJS     := $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.c.o)
+SSRC     := $(shell find $(SRC_DIR) -name '*.S')
+CSRC     := $(shell find $(SRC_DIR) -name '*.c')
+
+OBJS     := $(CSRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.c.o) $(SSRC:$(SRC_DIR)%.S=$(OBJ_DIR)%.S.o)
 
 CPY      := cp -r
 MKD      := mkdir -p
 DEL      := rm -fr
 
-default: run
+default: build
 
 log:
 	@echo INCLUDES "= $(INCLUDES)"
 	@echo CC "      = $(CC)"
 	@echo CFLAGS "  = $(CFLAGS)"
-	@echo LDFLAGS " = $(LDFLAGS)"
+	@echo ASM "     = $(ASM)"
+	@echo ASMFLAGS "= $(ASMFLAGS)"
+	@echo AR "      = $(AR)"
+	@echo ARFLAGS " = $(ARFLAGS)"
 	@echo SRC_DIR " = $(SRC_DIR)"
 	@echo OUT_DIR " = $(OUT_DIR)"
 	@echo TMP_DIR " = $(TMP_DIR)"
 	@echo OBJ_DIR " = $(OBJ_DIR)"
 	@echo TARGET "  = $(TARGET)"
-	@echo SRCS "    = $(SRCS)"
+	@echo SSRC "    = $(SSRC)"
+	@echo CSRC "    = $(CSRC)"
 	@echo OBJS "    = $(OBJS)"
 	@echo CPY "     = $(CPY)"
 	@echo MKD "     = $(MKD)"
 	@echo DEL "     = $(DEL)"
 
 run: build
-	$(OUT_DIR)$(TARGET)
+	@echo "Execution is not supported for static libraries."
 
 build: prepare $(OUT_DIR)$(TARGET)
 	$(CPY) $(TMP_DIR)$(OUT_DIR) .
@@ -54,7 +65,10 @@ clean:
 	$(DEL) $(TMP_DIR) $(OBJ_DIR) $(OUT_DIR)
 
 $(OUT_DIR)$(TARGET): $(OBJS)
-	$(CC) $(OBJS) -o $(TMP_DIR)$(OUT_DIR)$(TARGET) $(LDFLAGS)
+	$(AR) $(ARFLAGS) $(OUT_DIR)$(TARGET) $(OBJS)
 
 $(OBJ_DIR)%.c.o: $(SRC_DIR)%.c
 	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(OBJ_DIR)%.S.o: $(SRC_DIR)%.S
+	$(ASM) $(ASMFLAGS) $^ -o $@
