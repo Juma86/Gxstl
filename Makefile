@@ -16,7 +16,7 @@ OUT_DIR  := Bin/
 TMP_DIR  := Temp/
 OBJ_DIR  := $(TMP_DIR)Object/
 
-TARGET   := libgxstd.a
+TARGET   := libgxstl.a
 
 SSRC     := $(shell find $(SRC_DIR) -name '*.S')
 CSRC     := $(shell find $(SRC_DIR) -name '*.c')
