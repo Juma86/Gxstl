@@ -7,7 +7,7 @@ _start:
 
     sub rsp, 32
 
-    call main
+    call init
 
     mov rdi, rax
     mov rax, 60

@@ -3,7 +3,7 @@
 INCLUDES := .
 
 CC       := gcc
-CFLAGS   := `pkg-config --cflags $(INCLUDES)`
+CFLAGS   := `pkg-config --cflags $(INCLUDES)` -I../Header/ -std=c89
 
 ASM      := as
 ASMFLAGS := 
