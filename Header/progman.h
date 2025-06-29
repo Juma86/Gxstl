@@ -11,4 +11,4 @@ void exit (int rc);
 // Duplicates the running process
 // e.g. fork();
 // The above line would duplicate the current process into 2.
-void fork();
+int fork();
