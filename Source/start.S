@@ -1,8 +1,7 @@
 .intel_syntax noprefix
 
 .section .data
-stack:
-times 1024 db 0
+stack: .space 4096
 
 .section .text
 .globl _start
