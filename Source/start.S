@@ -11,6 +11,8 @@ _start:
     mov rbp, stack
     mov rsp, rbp
 
+    and rsp, 0xFFFFFFFFFFFFFFF0
+
     call main
 
     mov rsi, rax
