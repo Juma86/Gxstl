@@ -2,6 +2,8 @@
 
 INCLUDES := .
 
+ARCH     := x64
+
 CC       := gcc
 CFLAGS   := `pkg-config --cflags $(INCLUDES)` -I../Header/ -std=c89
 
@@ -18,7 +20,7 @@ OBJ_DIR  := $(TMP_DIR)Object/
 
 TARGET   := libgxstl.a
 
-SSRC     := $(shell find $(SRC_DIR) -name '*.S')
+SSRC     := $(shell find $(SRC_DIR) -name '*.$(ARCH).S')
 CSRC     := $(shell find $(SRC_DIR) -name '*.c')
 
 OBJS     := $(CSRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.c.o) $(SSRC:$(SRC_DIR)%.S=$(OBJ_DIR)%.S.o)
@@ -31,6 +33,7 @@ default: build
 
 log:
 	@echo INCLUDES "= $(INCLUDES)"
+	@echo ARCH "    = $(ARCH)"
 	@echo CC "      = $(CC)"
 	@echo CFLAGS "  = $(CFLAGS)"
 	@echo ASM "     = $(ASM)"
