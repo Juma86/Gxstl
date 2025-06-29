@@ -12,3 +12,8 @@ void exit (int rc);
 // e.g. fork();
 // The above line would duplicate the current process into 2.
 int fork();
+
+// Replaces the currently running process
+// TODO
+//
+void execve(const char *const filename, const char *const argv[], const char *const envp[]);

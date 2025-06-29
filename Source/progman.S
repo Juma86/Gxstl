@@ -2,6 +2,7 @@
 
 .global exit
 .global fork
+.global execve
 
 exit:
     mov rax, 60
@@ -11,3 +12,7 @@ fork:
     mov rax, 57
     syscall
     ret
+
+execve:
+    mov rax, 59
+    syscall
