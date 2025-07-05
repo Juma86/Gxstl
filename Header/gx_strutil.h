@@ -1,4 +1,4 @@
-#include "types.h"
+#include "gx_types.h"
 
 int64 strlen (const char *const string);
 bool streq (const char *const str1,

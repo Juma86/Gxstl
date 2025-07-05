@@ -1,4 +1,4 @@
-#include "../Header/strutil.h"
+#include "../Header/gx_strutil.h"
 
 int64
 strlen (const char *const string)
@@ -8,12 +8,12 @@ strlen (const char *const string)
     return length;
 }
 
-bool
-streq (const char *const str1,
+gx_bool
+gx_streq (const char *const str1,
        const char *const str2)
 {
     int64 index = -1;
-    bool is_equal;
+    gx_bool is_equal;
 
     while (str1[++index] && str2[index] && str1[index] == str2[index]);
 

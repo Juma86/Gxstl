@@ -1,20 +1,20 @@
-#include "../Header/assert.h"
+#include "../Header/gx_assert.h"
 
-void assert_true (bool cond,
+void gx_assert_true (gx_bool cond,
                   void *fail_text,
                   int64 length)
 {
-    assert (TRUE,
+    gx_assert (gx_TRUE,
             (int64) cond,
             fail_text,
             length);
 }
 
-void assert_false (bool cond,
+void gx_assert_false (gx_bool cond,
                    void *fail_text,
                    int64 length)
 {
-    assert (FALSE,
+    gx_assert (gx_FALSE,
             (int64) cond,
             fail_text,
             length);

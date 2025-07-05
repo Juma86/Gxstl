@@ -1,8 +1,8 @@
 .intel_syntax noprefix
 
-.global assert
+.global gx_assert
 
-assert:
+gx_assert:
     cmp rdi, rsi
     jne assert_fail
     ret

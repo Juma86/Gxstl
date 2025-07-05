@@ -1,13 +1,13 @@
-#include "../Header/common.h"
+#include "../Header/gx_common.h"
 
-static bool perform_init_asserts = true;
+static gx_bool gx_perform_init_asserts = gx_true;
 
 exitcode main (void);
 
 exitcode
 init (void)
 {
-    if (perform_init_asserts) {
+    if (gx_perform_init_asserts) {
         /* __gxstl_tests_assert_bools      (); */
         /* __gxstl_tests_assert_consolefds (); */
         /* __gxstl_tests_assert_exitcodes  (); */

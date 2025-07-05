@@ -1,6 +1,6 @@
 #ifndef PROGMAN_H
 #define PROGMAN_H
-#include "types.h"
+#include "gx_types.h"
 
 /* Ends program with exit code rc
  * e.g. exit(0);
@@ -16,5 +16,4 @@ int fork();
  * TODO */
 void execve(const char *const filename, const char *const argv[], const char *const envp[]);
 
-int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options);
 #endif /*PROGMAN_H*/

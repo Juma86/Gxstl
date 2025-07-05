@@ -1,6 +1,6 @@
 #ifndef CONIO_H
 #define CONIO_H
-#include "types.h"
+#include "gx_types.h"
 
 /* Writes count bytes of buf to fd.
  * e.g. write(stdout, "Hello, World!\n", strlen("Hello, World!\n"));
